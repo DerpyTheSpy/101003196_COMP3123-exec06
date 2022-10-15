@@ -16,6 +16,9 @@ app.get("/", (req, res) => {
 })
 
 //Insert New Student
+
+
+
 app.get("/add", async (req, res) => {
 
     let s = {
@@ -37,6 +40,7 @@ app.get("/add", async (req, res) => {
         res.status(500).send(err)
     }
 })
+
 
 //Read student data
 app.get("/students", async (req, res) => {
