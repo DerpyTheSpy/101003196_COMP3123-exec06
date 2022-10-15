@@ -28,8 +28,6 @@ const NoteSchema = mongoose.Schema({
         type: Date,
         required: true
     }
-}, {
-    timestamps: true
 });
 
 

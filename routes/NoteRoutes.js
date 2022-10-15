@@ -1,4 +1,4 @@
-const noteModel = require('../models/Notes.js');
+const noteModel = require('../models/NotesModel.js');
 //TODO - Create a new Note
 //http://mongoosejs.com/docs/api.html#document_Document-save
 app.post('/notes', (req, res) => {
@@ -11,7 +11,7 @@ app.post('/notes', (req, res) => {
     //TODO - Write your code here to save the note
     // Create a Note
     const note = new noteModel({
-        noteTitle: req.body.noteTitle || "Untitled Note",
+        noteTitle: req.body.noteTitle,
         noteDescription: req.body.noteDescription,
         priority: req.body.priority,
         dateAdded: req.body.dateAdded,
