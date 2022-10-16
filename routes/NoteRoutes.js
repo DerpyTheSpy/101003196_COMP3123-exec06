@@ -28,7 +28,7 @@ router.post('/notes', async (req, res) => {
 router.get('/notes', async(req, res) => {
     try {
         const notes = await NoteModel.find()
-        res.status(200).send(note)
+        res.status(200).send(notes)
     } catch (error) {
         res.status(500).send({
             error: "Something went wrong when dealing with the database."
