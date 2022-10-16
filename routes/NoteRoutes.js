@@ -7,7 +7,7 @@ const router = express.Router()
 router.post('/notes', async (req, res) => {
     console.log(req.body)
     // Validate request
-    if(!req.body) {
+    if(!req.body.noteTitle) {
         return res.status(400).send({
             message: "Note content can not be empty"
         });
@@ -15,11 +15,9 @@ router.post('/notes', async (req, res) => {
     const note = new NoteModel(req.body)
     try {
         await newNote.save()
-        res.status(200).send(note)
+        res.send(note)
     } catch (error) {
-        res.status(500).send({
-            error: "Something went wrong when dealing with the database."
-        })
+        res.status(500).send(error)
     }
 });
 
@@ -27,12 +25,10 @@ router.post('/notes', async (req, res) => {
 // DONE
 router.get('/notes', async(req, res) => {
     try {
-        const notes = await NoteModel.find()
-        res.status(200).send(notes)
+        const notes = await NoteModel.find({})
+        res.send(notes)
     } catch (error) {
-        res.status(500).send({
-            error: "Something went wrong when dealing with the database."
-        })
+        res.status(500).send(error)
     }
     
 });
