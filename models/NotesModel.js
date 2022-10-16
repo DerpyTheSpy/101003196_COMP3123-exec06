@@ -1,37 +1,34 @@
-const mongoose = require('mongoose');
 //TODO - Create Note Schema here having fields
 //      - noteTitle
 //      - noteDescription
 //      - priority (Value can be HIGH, LOW or MEDUIM)
 //      - dateAdded
 //      - dateUpdated
+// Done
 
-const NoteSchema = mongoose.Schema({
+const mongoose = require('mongoose');
+const noteSchema = new mongoose.Schema({
     noteTitle: {
         type: String,
-        required: true,
-        trim: true
+        required: true
     },
     noteDescription: {
         type: String,
-        required: true,
-        trim: true
+        required: true
     },
     priority: {
         type: String,
         required: true,
-        enum: ['HIGH', 'LOW', 'MEDIUM']
+        values: ['HIGH', 'LOW', 'MEDIUM']
     },
     dateAdded: {
         type: Date,
-        default: Date.now(),
         required: true
     },
     dateUpdated: {
-        type: Date
+        type: Date,
+        required: true
     }
 });
 
-
-
-module.exports = mongoose.model('note', NoteSchema);
+module.exports = mongoose.model("note", noteSchema)
