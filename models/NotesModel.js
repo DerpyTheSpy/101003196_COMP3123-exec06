@@ -9,11 +9,13 @@ const mongoose = require('mongoose');
 const NoteSchema = mongoose.Schema({
     noteTitle: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     noteDescription: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     priority: {
         type: String,
@@ -22,14 +24,14 @@ const NoteSchema = mongoose.Schema({
     },
     dateAdded: {
         type: Date,
+        default: Date.now(),
         required: true
     },
     dateUpdated: {
-        type: Date,
-        required: true
+        type: Date
     }
 });
 
 
 
-module.exports = mongoose.model('Note', NoteSchema);
+module.exports = mongoose.model('note', NoteSchema);
