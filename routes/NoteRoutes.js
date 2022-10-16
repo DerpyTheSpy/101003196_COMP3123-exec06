@@ -142,3 +142,5 @@ app.delete('/notes/:noteId', (req, res) => {
     }
     );
 });
+
+module.exports = routes;
