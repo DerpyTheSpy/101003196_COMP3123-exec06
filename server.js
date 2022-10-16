@@ -1,16 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const noteRoutes = require('./routes/NoteRoutes.js');
-const app = express();
 
 const DB_URL = "mongodb+srv://derpythespy:1234@cluster0.4dp6azc.mongodb.net/?retryWrites=true&w=majority"
-
-
+const app = express();
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
-
-app.use("/", noteRoutes);
 
 mongoose.Promise = global.Promise;
 
