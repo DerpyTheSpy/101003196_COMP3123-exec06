@@ -1,6 +1,6 @@
 const express = require('express')
 const NoteModel = require('../models/NotesModel');
-const app = express.Router()
+const router = express.Router()
 
 //TODO - Create a new Note
 // DONE
@@ -103,4 +103,4 @@ router.delete('/notes/:noteId', async(req, res) => {
     }
 });
 
-module.exports = app
+module.exports = router
