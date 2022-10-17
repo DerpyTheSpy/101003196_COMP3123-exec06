@@ -23,11 +23,11 @@ const noteSchema = new mongoose.Schema({
     },
     dateAdded: {
         type: Date,
-        required: true
+        default: Date.now
     },
     dateUpdated: {
         type: Date,
-        required: true
+        default: Date.now
     }
 });
 

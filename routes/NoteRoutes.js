@@ -12,10 +12,10 @@ router.post('/notes', async (req, res) => {
             message: "Note content can not be empty"
         });
     }
-    const note = new NoteModel(req.body)
+    const newNote = new NoteModel(req.body)
     try {
         await newNote.save()
-        res.send(note)
+        res.send(newNote)
     } catch (error) {
         res.status(500).send(error)
     }
@@ -25,8 +25,8 @@ router.post('/notes', async (req, res) => {
 // DONE
 router.get('/notes', async(req, res) => {
     try {
-        const notes = await NoteModel.find({})
-        res.send(notes)
+        const allNotes = await NoteModel.find({})
+        res.send(allNotes)
     } catch (error) {
         res.status(500).send(error)
     }
@@ -43,8 +43,8 @@ router.get('/notes/:noteId', async(req, res) => {
         });
     }
     try {
-        const note = await NoteModel.findById(req.params.noteId).exec();
-        res.status(200).send(note);
+        const retNote = await NoteModel.findById(req.params.noteId).exec();
+        res.status(200).send(retNote);
     } catch (error) {
         res.status(500).send({
             error: "Something went wrong when dealing with the database."
@@ -68,12 +68,12 @@ router.put('/notes/:noteId', async(req, res) => {
     }
 
     try {
-        const note = await NoteModel.findByIdAndUpdate(req.params.noteId, 
+        const UploadNote = await NoteModel.findByIdAndUpdate(req.params.noteId, 
             {noteTitle: req.body.noteTitle});
 
-        if(!note)
+        if(!UploadNote)
         res.status(404).send({message: "Note not found with id " + req.params.noteId});
-        res.status(200).send(note);
+        res.status(200).send(UploadNote);
     }
     catch(error) {
         res.status(500).send(error);
@@ -90,7 +90,7 @@ router.delete('/notes/:noteId', async(req, res) => {
         });
     }
     try {
-        const note = await NoteModel.findByIdAndRemove(req.params.noteId);
+        const deleteNote = await NoteModel.findByIdAndRemove(req.params.noteId);
         res.status(200).send("Successfully deleted note with id " + req.params.noteId);
     } catch (error) {
         res.status(500).send({
